@@ -1,0 +1,4 @@
+﻿undefined
+ΓÇëERR_PNPM_RECURSIVE_EXEC_FIRST_FAILΓÇë Command "eslint" not found
+
+Did you mean "pnpm exec browserslist"?
