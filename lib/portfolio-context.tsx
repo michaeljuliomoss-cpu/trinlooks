@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { useQuery, useMutation } from "convex/react"
 import { api } from "../convex/_generated/api"
 import {
@@ -26,6 +26,8 @@ interface PortfolioContextType {
   addCategory: (category: PortfolioCategory) => void
   addService: (service: Partial<Service>) => void
   deleteService: (id: string) => void
+  generateUploadUrl: () => Promise<string>
+  getImageUrl: (storageId: string) => Promise<string | null>
 }
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined)
@@ -85,7 +87,7 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
   }
 
   const addService = async (service: Partial<Service>) => {
-    await addServiceMutation(service)
+    await addServiceMutation(service as any)
   }
 
   const deleteService = async (id: string) => {
@@ -98,6 +100,17 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
 
   const deleteImage = async (id: string) => {
     await deleteImageMutation({ id })
+  }
+
+  const generateUploadUrlMutation = useMutation(api.siteContent.generateUploadUrl)
+  const getImageUrlMutation = useMutation(api.siteContent.getImageUrl)
+
+  const generateUploadUrl = async () => {
+    return await generateUploadUrlMutation()
+  }
+
+  const getImageUrl = async (storageId: any) => {
+    return await getImageUrlMutation({ storageId })
   }
 
   return (
@@ -117,6 +130,8 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
         addCategory,
         addService,
         deleteService,
+        generateUploadUrl,
+        getImageUrl,
       }}
     >
       {children}

@@ -62,6 +62,29 @@ export const updateCategory = mutation({
     },
 });
 
+export const addCategory = mutation({
+    args: {
+        id: v.string(),
+        name: v.string(),
+        description: v.string(),
+        coverImage: v.string(),
+    },
+    handler: async (ctx, args) => {
+        await ctx.db.insert("categories", args);
+    },
+});
+
+export const deleteCategory = mutation({
+    args: { id: v.string() },
+    handler: async (ctx, args) => {
+        const categories = await ctx.db.query("categories").collect();
+        const categoryToDelete = categories.find(cat => cat.id === args.id);
+        if (categoryToDelete) {
+            await ctx.db.delete(categoryToDelete._id);
+        }
+    },
+});
+
 // Portfolio Images
 export const getImages = query({
     args: {},
@@ -123,6 +146,30 @@ export const updateService = mutation({
     },
 });
 
+export const addService = mutation({
+    args: {
+        id: v.string(),
+        name: v.string(),
+        description: v.string(),
+        duration: v.string(),
+        price: v.string(),
+    },
+    handler: async (ctx, args) => {
+        await ctx.db.insert("services", args);
+    },
+});
+
+export const deleteService = mutation({
+    args: { id: v.string() },
+    handler: async (ctx, args) => {
+        const services = await ctx.db.query("services").collect();
+        const serviceToDelete = services.find(s => s.id === args.id);
+        if (serviceToDelete) {
+            await ctx.db.delete(serviceToDelete._id);
+        }
+    },
+});
+
 // Admin Auth (Simple demo check)
 export const checkAdmin = query({
     args: { username: v.string(), password: v.string() },
@@ -141,5 +188,16 @@ export const setupAdmin = mutation({
             await ctx.db.delete(admin._id);
         }
         await ctx.db.insert("adminAccess", args);
+    },
+});
+
+export const generateUploadUrl = mutation(async (ctx) => {
+    return await ctx.storage.generateUploadUrl();
+});
+
+export const getImageUrl = mutation({
+    args: { storageId: v.id("_storage") },
+    handler: async (ctx, { storageId }) => {
+        return await ctx.storage.getUrl(storageId);
     },
 });

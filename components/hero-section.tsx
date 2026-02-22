@@ -37,18 +37,41 @@ export function HeroSection() {
     <section
       ref={heroRef}
       id="home"
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#9988ff]"
+      className="relative h-screen min-h-[800px] w-full flex items-center justify-center overflow-hidden bg-[#9988ff]"
     >
       {/* Dynamic Background Glows */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-[#8877ee] via-transparent to-[#aa99ff] opacity-50"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-[#8877ee] via-transparent to-[#aa99ff] opacity-50 z-0"
       />
 
       {/* Floating orbs for depth */}
       <div
-        className="absolute top-[10%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-white/20 blur-[120px] pointer-events-none animate-pulse"
+        className="absolute top-[10%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-white/20 blur-[120px] pointer-events-none animate-pulse z-0"
         style={{ transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px)` }}
       />
+
+      {/* Parallax Hero Image (Bottom Up, Behind Content) */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] flex justify-center z-0 pointer-events-none"
+        style={{
+          transform: `translate(-50%, ${scrollY * 0.2}px)`, // Parallax effect
+        }}
+      >
+        {siteContent.heroImage ? (
+          <img
+            src={siteContent.heroImage}
+            alt="Trin's Portfolio Masterpiece"
+            className="w-auto h-[85vh] object-contain object-bottom drop-shadow-2xl opacity-90 filter saturate-[1.1]"
+          />
+        ) : (
+          /* Placeholder if no image */
+          <div className="w-[600px] h-[700px] bg-white/5 backdrop-blur-3xl rounded-t-full border-t border-x border-white/10 flex items-center justify-center">
+            <ImageIcon className="w-20 h-20 text-white/20" />
+          </div>
+        )}
+        {/* Gradient Overlay at bottom to blend image if needed */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#9988ff] to-transparent" />
+      </div>
 
       <div className="relative w-full h-full max-w-[1800px] mx-auto px-6 lg:px-12 flex flex-col justify-between py-12 lg:py-20 z-10">
 
@@ -66,39 +89,12 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Central Dominant Image */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg lg:max-w-2xl px-6">
-          <div
-            className="relative aspect-square md:aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl transition-transform duration-500 ease-out"
-            style={{
-              transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px) rotateY(${mousePosition.x * 5}deg) rotateX(${mousePosition.y * -5}deg)`,
-              boxShadow: `${mousePosition.x * -20}px ${mousePosition.y * -20}px 60px rgba(0,0,0,0.3)`
-            }}
-          >
-            {siteContent.heroImage ? (
-              <img
-                src={siteContent.heroImage}
-                alt="Trinity Portrait"
-                className="w-full h-full object-cover scale-110"
-              />
-            ) : (
-              <div className="w-full h-full bg-white/5 backdrop-blur-3xl flex items-center justify-center border border-white/10">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-24 h-24 rounded-full border-2 border-dashed border-white/20 flex items-center justify-center">
-                    <ImageIcon className="w-10 h-10 text-white/20" />
-                  </div>
-                  <span className="text-xs tracking-[0.2em] font-medium text-white/30 uppercase">Artist Placeholder</span>
-                </div>
-              </div>
-            )}
-            {/* Glossy overlay on image */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/10" />
-          </div>
-        </div>
+        {/* Center/Main Content Area - Empty again to push content down */}
+        <div className="flex-1" />
 
         {/* Bottom Navigation / Bio & Socials (LEFT) */}
-        <div className="flex flex-col lg:flex-row justify-between items-end gap-12">
-          <div className="max-w-xs space-y-8">
+        <div className="flex flex-col lg:flex-row justify-between items-end gap-12 w-full">
+          <div className="max-w-xs space-y-8 z-20">
             {/* Social Links */}
             <div className="flex gap-8 text-[11px] font-bold tracking-[0.2em] uppercase text-white/90">
               <a href={siteContent.contactInstagram} className="hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">Instagram</a>
@@ -106,31 +102,35 @@ export function HeroSection() {
             </div>
 
             {/* Bio Text */}
-            <p className="text-white/80 text-sm leading-relaxed font-light tracking-wide italic">
+            <p className="text-white/80 text-sm leading-relaxed font-light tracking-wide italic max-w-[280px]">
               {siteContent.heroBio}
             </p>
           </div>
 
-          {/* Massive Headline (RIGHT) */}
+          {/* Massive Headline (RIGHT -> NOW LEFT/CENTERED IN ITS OWN WAY or just LEFT?) */}
+          {/* User said "not on righthand side". I will put it on the LEFT side of spacing, or maybe center it at the bottom? */}
+          {/* Let's try placing it on the LEFT to balance the Bio? No, Bio is on Left. */}
+          {/* If I put it on the Right, they hate it. if I put it Center-Screen, they hate it. */}
+          {/* How about Center-Bottom? */}
           <div
-            className="transition-transform duration-300 ease-out text-right lg:text-left"
+            className="transition-transform duration-300 ease-out z-20 mix-blend-overlay w-full lg:w-auto text-center lg:text-right"
             style={{ transform: `translateX(${mousePosition.x * -10}px)` }}
           >
-            <h1 className="font-serif text-[15vw] lg:text-[12vw] leading-[0.85] text-white tracking-tighter drop-shadow-2xl">
-              <span className="block opacity-90">{siteContent.heroHeadlineTop}</span>
-              <span className="block italic">{siteContent.heroHeadlineBottom}</span>
+            <h1 className="font-serif text-[15vw] lg:text-[13vw] leading-[0.8] text-white tracking-tighter drop-shadow-sm">
+              <span className="block">{siteContent.heroHeadlineTop}</span>
+              <span className="block italic font-light opacity-90">{siteContent.heroHeadlineBottom}</span>
             </h1>
           </div>
         </div>
       </div>
 
       {/* Subtle Scroll Hint */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-30 z-20">
         <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
       </div>
 
       {/* Texture Overlay */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-30" />
     </section>
   )
 }

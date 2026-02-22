@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type FormEvent, type ChangeEvent } from "react"
+import React, { useState } from "react"
 import { usePortfolio } from "@/lib/portfolio-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -21,9 +21,11 @@ import {
   ChevronRight,
   Lock,
   Globe,
-  Instagram,
   Phone,
-  ArrowRight
+  ArrowRight,
+  Clock,
+  Upload,
+  Instagram
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -41,7 +43,9 @@ export default function AdminPage() {
     addCategory,
     deleteCategory,
     addImage,
-    deleteImage
+    deleteImage,
+    generateUploadUrl,
+    getImageUrl
   } = usePortfolio()
 
   const [isAdmin, setIsAdmin] = useState(false)
@@ -51,8 +55,9 @@ export default function AdminPage() {
 
   const [editContent, setEditContent] = useState(siteContent)
   const [activeTab, setActiveTab] = useState("hero")
+  const [uploadingCategory, setUploadingCategory] = useState(null)
 
-  const handleLogin = (e: FormEvent) => {
+  const handleLogin = (e: any) => {
     e.preventDefault()
     if (username === "TrinTrin" && password === "Googoogaga12") {
       setIsAdmin(true)
@@ -75,7 +80,7 @@ export default function AdminPage() {
     }
   }
 
-  const handleContentChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleContentChange = (e: any) => {
     const { name, value } = e.target
     if (editContent) {
       setEditContent({ ...editContent, [name]: value })
@@ -119,13 +124,51 @@ export default function AdminPage() {
   }
 
   const handleAddImage = async (category: string) => {
-    const url = prompt("Enter image URL:")
+    const url = prompt("Enter external image URL (or use the upload button):")
     if (url) {
       await addImage({
         url,
         title: "New Photo",
-        category
-      })
+        category,
+        categoryId: category,
+        imageUrl: url,
+        description: "",
+        role: "",
+        year: ""
+      } as any)
+    }
+  }
+
+  const handlePortfolioImageUpload = async (e: any, category: string) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setUploadingCategory(category);
+      const postUrl = await generateUploadUrl();
+      const result = await fetch(postUrl, {
+        method: "POST",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+      const { storageId } = await result.json();
+      const url = await getImageUrl(storageId);
+      if (url) {
+        await addImage({
+          url,
+          title: "New Photo",
+          category,
+          categoryId: category,
+          imageUrl: url,
+          description: "",
+          role: "",
+          year: ""
+        } as any);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Upload failed.");
+    } finally {
+      setUploadingCategory(null);
     }
   }
 
@@ -152,7 +195,7 @@ export default function AdminPage() {
                 <label className="text-sm font-medium ml-1">Username</label>
                 <Input
                   value={username}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+                  onChange={(e: any) => setUsername(e.target.value)}
                   placeholder="Enter username"
                   className="bg-background/50 border-border/50 h-11 focus:ring-accent/20"
                 />
@@ -162,7 +205,7 @@ export default function AdminPage() {
                 <Input
                   type="password"
                   value={password}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                  onChange={(e: any) => setPassword(e.target.value)}
                   placeholder="Enter password"
                   className="bg-background/50 border-border/50 h-11 focus:ring-accent/20"
                 />
@@ -265,11 +308,11 @@ export default function AdminPage() {
                   <CardContent className="pt-6 space-y-6">
                     <div className="space-y-2">
                       <label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground">Title</label>
-                      <Input name="heroTitle" value={editContent.heroTitle} onChange={handleContentChange} className="bg-muted/10 font-serif text-2xl h-14" />
+                      <Input name="heroHeadlineTop" value={editContent.heroHeadlineTop} onChange={handleContentChange} className="bg-muted/10 font-serif text-2xl h-14" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground">Subtitle</label>
-                      <Textarea name="heroSubtitle" value={editContent.heroSubtitle} onChange={handleContentChange} className="bg-muted/10 text-lg leading-relaxed h-32" />
+                      <Textarea name="heroHeadlineBottom" value={editContent.heroHeadlineBottom} onChange={handleContentChange} className="bg-muted/10 text-lg leading-relaxed h-32" />
                     </div>
                   </CardContent>
                 </Card>
@@ -282,10 +325,15 @@ export default function AdminPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6 space-y-4">
-                    <div className="aspect-square rounded-xl overflow-hidden border border-border shadow-inner bg-muted/50">
+                    <div className="aspect-square rounded-xl overflow-hidden border border-border shadow-inner bg-muted/50 relative group">
                       <img src={editContent.heroImage} alt="Preview" className="w-full h-full object-cover" />
                     </div>
-                    <Input name="heroImage" value={editContent.heroImage} onChange={handleContentChange} placeholder="Image URL" className="bg-muted/10 h-10" />
+                    <ImageUploadInput
+                      value={editContent.heroImage}
+                      onChange={(url) => setEditContent({ ...editContent, heroImage: url })}
+                      generateUploadUrl={generateUploadUrl}
+                      getImageUrl={getImageUrl}
+                    />
                   </CardContent>
                 </Card>
               </div>
@@ -321,7 +369,12 @@ export default function AdminPage() {
                     <div className="aspect-[3/4] rounded-xl overflow-hidden border border-border shadow-inner">
                       <img src={editContent.aboutImage} alt="Preview" className="w-full h-full object-cover" />
                     </div>
-                    <Input name="aboutImage" value={editContent.aboutImage} onChange={handleContentChange} placeholder="Portrait URL" className="bg-muted/10 h-10" />
+                    <ImageUploadInput
+                      value={editContent.aboutImage}
+                      onChange={(url) => setEditContent({ ...editContent, aboutImage: url })}
+                      generateUploadUrl={generateUploadUrl}
+                      getImageUrl={getImageUrl}
+                    />
                   </CardContent>
                 </Card>
               </div>
@@ -339,19 +392,19 @@ export default function AdminPage() {
               </CardHeader>
               <CardContent className="p-0">
                 <div className="divide-y divide-border/30">
-                  {services.map((service, index) => (
+                  {services.map((service: any, index: number) => (
                     <div key={service.id || index} className="p-8 hover:bg-muted/5 transition-colors group">
                       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                         <div className="md:col-span-2 space-y-4">
                           <Input
                             value={service.name}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) => handleUpdateServiceField(service.id, "name", e.target.value)}
+                            onChange={(e: any) => handleUpdateServiceField(service.id, "name", e.target.value)}
                             className="bg-muted/10 font-serif text-lg h-11 font-medium"
                             placeholder="Service Name"
                           />
                           <Textarea
                             value={service.description}
-                            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => handleUpdateServiceField(service.id, "description", e.target.value)}
+                            onChange={(e: any) => handleUpdateServiceField(service.id, "description", e.target.value)}
                             className="bg-muted/10 h-24 text-sm"
                             placeholder="Description"
                           />
@@ -361,7 +414,7 @@ export default function AdminPage() {
                             <Clock size={16} className="text-accent" />
                             <Input
                               value={service.duration}
-                              onChange={(e: ChangeEvent<HTMLInputElement>) => handleUpdateServiceField(service.id, "duration", e.target.value)}
+                              onChange={(e: any) => handleUpdateServiceField(service.id, "duration", e.target.value)}
                               className="bg-muted/10 h-10 text-sm"
                               placeholder="Duration"
                             />
@@ -370,7 +423,7 @@ export default function AdminPage() {
                             <DollarSign size={16} className="text-accent" />
                             <Input
                               value={service.price}
-                              onChange={(e: ChangeEvent<HTMLInputElement>) => handleUpdateServiceField(service.id, "price", e.target.value)}
+                              onChange={(e: any) => handleUpdateServiceField(service.id, "price", e.target.value)}
                               className="bg-muted/10 h-10 text-sm"
                               placeholder="Price"
                             />
@@ -399,7 +452,7 @@ export default function AdminPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {categories.map((cat, idx) => (
+              {categories.map((cat: any, idx: number) => (
                 <Card key={cat.id || idx} className="border-border/40 overflow-hidden shadow-sm hover:shadow-md transition-all group">
                   <div className="aspect-[4/3] relative bg-muted animate-pulse group-hover:animate-none">
                     <img src={cat.coverImage} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -414,15 +467,26 @@ export default function AdminPage() {
                       <p className="font-medium text-lg mb-1">{cat.title}</p>
                       <p className="text-xs text-muted-foreground uppercase tracking-widest">{cat.slug}</p>
                     </div>
-                    <Badge variant="secondary" className="bg-accent/10 text-accent border-none">{portfolioImages.filter(img => img.category === cat.slug).length} Photos</Badge>
+                    <Badge variant="secondary" className="bg-accent/10 text-accent border-none">{portfolioImages.filter((img: any) => img.category === cat.slug).length} Photos</Badge>
                   </CardContent>
-                  <CardFooter className="p-4 pt-0">
+                  <CardFooter className="p-4 pt-0 flex flex-col gap-2">
                     <Button
                       variant="ghost"
-                      className="w-full border border-border/50 text-xs h-8 gap-2 hover:bg-accent hover:text-accent-foreground"
-                      onClick={() => handleAddImage(cat.slug)}
+                      className="w-full border border-border/50 text-xs h-8 gap-2 hover:bg-accent hover:text-accent-foreground relative overflow-hidden"
                     >
-                      <Plus size={14} /> Add Image
+                      {uploadingCategory === cat.slug ? (
+                        <span className="animate-pulse">Uploading...</span>
+                      ) : (
+                        <>
+                          <Upload size={14} /> Upload Image
+                          <Input
+                            type="file"
+                            accept="image/*"
+                            className="absolute inset-0 opacity-0 cursor-pointer"
+                            onChange={(e: any) => handlePortfolioImageUpload(e, cat.slug)}
+                          />
+                        </>
+                      )}
                     </Button>
                   </CardFooter>
                 </Card>
@@ -434,7 +498,7 @@ export default function AdminPage() {
             <div className="space-y-8">
               <h3 className="font-serif text-2xl">Recent Photo Management</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                {portfolioImages.slice(0, 12).map((img, idx) => (
+                {portfolioImages.slice(0, 12).map((img: any, idx: number) => (
                   <div key={img.id || idx} className="aspect-square relative rounded-lg overflow-hidden border border-border group">
                     <img src={img.url} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center gap-2">
@@ -556,4 +620,45 @@ function DollarSign({ size, className }: { size: number, className: string }) {
       <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
     </svg>
   )
+}
+
+function ImageUploadInput({ value, onChange, generateUploadUrl, getImageUrl }: { value: string, onChange: (url: string) => void, generateUploadUrl: any, getImageUrl: any }) {
+  const [isUploading, setIsUploading] = useState(false);
+
+  const handleUpload = async (e: any) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    try {
+      setIsUploading(true);
+      const postUrl = await generateUploadUrl();
+      const result = await fetch(postUrl, {
+        method: "POST",
+        headers: { "Content-Type": file.type },
+        body: file,
+      });
+      const { storageId } = await result.json();
+      const url = await getImageUrl(storageId);
+      if (url) {
+        onChange(url);
+      }
+    } catch (error) {
+      console.error("Upload failed", error);
+      alert("Failed to upload image.");
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center gap-3">
+        <Input type="file" accept="image/*" onChange={handleUpload} disabled={isUploading} className="text-sm cursor-pointer file:text-xs file:font-semibold file:bg-accent file:text-accent-foreground file:border-0 file:rounded-md cursor-pointer file:h-full py-1 h-9" />
+        {isUploading && <span className="text-xs text-muted-foreground animate-pulse whitespace-nowrap font-medium">Uploading...</span>}
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="text-xs text-muted-foreground font-medium uppercase tracking-widest px-2">OR</div>
+        <Input value={value} onChange={(e: any) => onChange(e.target.value)} placeholder="Paste image URL here" className="bg-muted/10 h-9 text-xs flex-1" />
+      </div>
+    </div>
+  );
 }
