@@ -1,0 +1,352 @@
+﻿app/layout.tsx(52,19): error TS2694: Namespace '"react"' has no exported member 'ReactNode'.
+app/page.tsx(14,51): error TS2347: Untyped function calls may not accept type arguments.
+components/booking-form.tsx(30,31): error TS2347: Untyped function calls may not accept type arguments.
+components/booking-form.tsx(33,45): error TS2339: Property 'appointments' does not exist on type '{ siteContent: { getSiteContent: FunctionReference<"query", "public", {}, { _id: Id<"siteContent">; _creationTime: number; key: string; value: any; }[], string | undefined>; ... 15 more ...; getImageUrl: FunctionReference<...>; }; }'.
+components/booking-form.tsx(34,50): error TS2339: Property 'whatsapp' does not exist on type '{ siteContent: { getSiteContent: FunctionReference<"query", "public", {}, { _id: Id<"siteContent">; _creationTime: number; key: string; value: any; }[], string | undefined>; ... 15 more ...; getImageUrl: FunctionReference<...>; }; }'.
+components/booking-form.tsx(36,40): error TS2694: Namespace '"react"' has no exported member 'FormEvent'.
+components/booking-form.tsx(75,34): error TS2694: Namespace '"react"' has no exported member 'ChangeEvent'.
+components/booking-form.tsx(76,18): error TS7006: Parameter 'prev' implicitly has an 'any' type.
+components/booking-modal.tsx(34,27): error TS2347: Untyped function calls may not accept type arguments.
+components/booking-modal.tsx(35,53): error TS2347: Untyped function calls may not accept type arguments.
+components/booking-modal.tsx(36,43): error TS2347: Untyped function calls may not accept type arguments.
+components/booking-modal.tsx(37,43): error TS2347: Untyped function calls may not accept type arguments.
+components/booking-modal.tsx(68,42): error TS7006: Parameter 's' implicitly has an 'any' type.
+components/booking-modal.tsx(72,39): error TS2339: Property 'availability' does not exist on type '{ siteContent: { getSiteContent: FunctionReference<"query", "public", {}, { _id: Id<"siteContent">; _creationTime: number; key: string; value: any; }[], string | undefined>; ... 15 more ...; getImageUrl: FunctionReference<...>; }; }'.
+components/booking-modal.tsx(165,30): error TS7006: Parameter 'service' implicitly has an 'any' type.
+components/contact-section.tsx(21,37): error TS2347: Untyped function calls may not accept type arguments.
+components/contact-section.tsx(23,21): error TS2347: Untyped function calls may not accept type arguments.
+components/contact-section.tsx(25,28): error TS2709: Cannot use namespace 'FormEvent' as a type.
+components/contact-section.tsx(31,37): error TS2315: Type 'MouseEvent' is not generic.
+components/convex-client-provider.tsx(8,64): error TS2709: Cannot use namespace 'ReactNode' as a type.
+components/hero-section.tsx(10,19): error TS2347: Untyped function calls may not accept type arguments.
+components/portfolio-card.tsx(17,19): error TS2347: Untyped function calls may not accept type arguments.
+components/portfolio-card.tsx(19,37): error TS2694: Namespace '"react"' has no exported member 'MouseEvent'.
+components/portfolio-gallery.tsx(17,20): error TS2347: Untyped function calls may not accept type arguments.
+components/portfolio-gallery.tsx(19,37): error TS2694: Namespace '"react"' has no exported member 'MouseEvent'.
+components/portfolio-gallery.tsx(84,37): error TS7006: Parameter 'c' implicitly has an 'any' type.
+components/portfolio-gallery.tsx(85,41): error TS7006: Parameter 'img' implicitly has an 'any' type.
+components/portfolio-gallery.tsx(111,34): error TS7006: Parameter 'image' implicitly has an 'any' type.
+components/portfolio-gallery.tsx(111,41): error TS7006: Parameter 'index' implicitly has an 'any' type.
+components/portfolio-overview.tsx(36,28): error TS7006: Parameter 'category' implicitly has an 'any' type.
+components/portfolio-overview.tsx(36,38): error TS7006: Parameter 'index' implicitly has an 'any' type.
+components/services-section.tsx(21,19): error TS2347: Untyped function calls may not accept type arguments.
+components/services-section.tsx(23,31): error TS2315: Type 'MouseEvent' is not generic.
+components/services-section.tsx(96,53): error TS2347: Untyped function calls may not accept type arguments.
+components/services-section.tsx(124,28): error TS7006: Parameter 'service' implicitly has an 'any' type.
+components/services-section.tsx(124,37): error TS7006: Parameter 'index' implicitly has an 'any' type.
+components/theme-provider.tsx(9,33): error TS2339: Property 'children' does not exist on type 'ThemeProviderProps'.
+components/ui/accordion.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/accordion.tsx(18,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/accordion.tsx(32,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/accordion.tsx(54,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(17,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(25,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(34,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(50,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(69,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(82,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(98,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(111,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(124,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert-dialog.tsx(136,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert.tsx(26,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert.tsx(37,52): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/alert.tsx(53,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/avatar.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/avatar.tsx(27,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/avatar.tsx(40,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/badge.tsx(33,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/breadcrumb.tsx(7,41): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/breadcrumb.tsx(11,56): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/breadcrumb.tsx(24,56): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/breadcrumb.tsx(38,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/breadcrumb.tsx(52,56): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/breadcrumb.tsx(69,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/breadcrumb.tsx(86,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/button.tsx(45,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/calendar.tsx(23,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/calendar.tsx(24,25): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/calendar.tsx(180,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/calendar.tsx(183,15): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/card.tsx(5,46): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/card.tsx(18,52): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/card.tsx(31,51): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/card.tsx(41,57): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/card.tsx(51,52): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/card.tsx(64,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/card.tsx(74,52): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/carousel.tsx(33,25): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/carousel.tsx(53,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/carousel.tsx(79,19): error TS2694: Namespace '"react"' has no exported member 'KeyboardEvent'.
+components/ui/carousel.tsx(135,57): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/carousel.tsx(156,54): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/carousel.tsx(179,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/carousel.tsx(209,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/chart.tsx(13,19): error TS2694: Namespace '"react"' has no exported member 'ReactNode'.
+components/ui/chart.tsx(14,18): error TS2694: Namespace '"react"' has no exported member 'ComponentType'.
+components/ui/chart.tsx(25,22): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/chart.tsx(43,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/chart.tsx(45,19): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/chart.tsx(121,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/chart.tsx(122,9): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/chart.tsx(182,23): error TS7006: Parameter 'item' implicitly has an 'any' type.
+components/ui/chart.tsx(182,29): error TS7006: Parameter 'index' implicitly has an 'any' type.
+components/ui/chart.tsx(218,38): error TS2694: Namespace '"react"' has no exported member 'CSSProperties'.
+components/ui/chart.tsx(259,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/chart.tsx(278,21): error TS7006: Parameter 'item' implicitly has an 'any' type.
+components/ui/checkbox.tsx(12,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(19,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(39,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(66,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(88,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(103,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(116,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(132,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(145,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/command.tsx(161,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(17,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(25,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(33,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(41,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(47,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(61,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(83,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(99,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(119,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(142,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(167,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(191,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(210,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/context-menu.tsx(223,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(17,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(23,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(29,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(36,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(54,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(83,54): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(93,54): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(109,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dialog.tsx(122,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(10,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(16,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(22,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(28,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(35,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(52,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(75,54): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(88,54): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(101,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/drawer.tsx(114,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(17,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(25,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(38,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(56,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(67,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(90,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(113,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(126,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(150,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(169,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(182,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(197,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(206,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/dropdown-menu.tsx(228,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/form.tsx(28,26): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/form.tsx(72,25): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/form.tsx(76,50): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/form.tsx(93,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/form.tsx(107,42): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/form.tsx(125,57): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/form.tsx(138,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/hover-card.tsx(10,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/hover-card.tsx(16,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/hover-card.tsx(27,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/input-otp.tsx(13,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/input-otp.tsx(29,55): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/input-otp.tsx(43,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/input-otp.tsx(69,48): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/input.tsx(5,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(8,51): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(22,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(60,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(95,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(106,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(119,51): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(132,57): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(146,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(156,52): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/item.tsx(169,52): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/label.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(12,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(27,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(33,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(39,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(45,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(54,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(73,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(96,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(119,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(144,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(168,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(187,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(200,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(215,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(224,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/menubar.tsx(246,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/navigation-menu.tsx(13,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/navigation-menu.tsx(35,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/navigation-menu.tsx(51,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/navigation-menu.tsx(69,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/navigation-menu.tsx(88,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/navigation-menu.tsx(105,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/navigation-menu.tsx(125,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/navigation-menu.tsx(141,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/pagination.tsx(11,52): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/pagination.tsx(26,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/pagination.tsx(36,45): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/pagination.tsx(42,16): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/pagination.tsx(43,9): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/pagination.tsx(71,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/pagination.tsx(88,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/pagination.tsx(105,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/popover.tsx(10,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/popover.tsx(16,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/popover.tsx(25,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/popover.tsx(44,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/progress.tsx(12,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/radio-group.tsx(12,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/radio-group.tsx(25,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/resizable.tsx(12,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/resizable.tsx(27,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/resizable.tsx(35,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/scroll-area.tsx(12,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/scroll-area.tsx(35,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(17,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(23,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(32,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(58,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(91,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(105,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(128,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(141,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/select.tsx(159,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/separator.tsx(13,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(9,36): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(15,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(21,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(27,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(34,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(52,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(84,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(94,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(107,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sheet.tsx(120,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(45,24): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/sidebar.tsx(64,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(93,38): error TS7006: Parameter 'open' implicitly has an 'any' type.
+components/ui/sidebar.tsx(93,65): error TS7006: Parameter 'open' implicitly has an 'any' type.
+components/ui/sidebar.tsx(116,24): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/sidebar.tsx(139,24): error TS2694: Namespace '"react"' has no exported member 'CSSProperties'.
+components/ui/sidebar.tsx(161,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(194,24): error TS2694: Namespace '"react"' has no exported member 'CSSProperties'.
+components/ui/sidebar.tsx(260,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(270,17): error TS7006: Parameter 'event' implicitly has an 'any' type.
+components/ui/sidebar.tsx(282,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(307,54): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(324,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(335,55): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(346,55): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(360,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(371,56): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(385,54): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(400,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(421,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(443,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(454,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(465,57): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(506,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(509,28): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(553,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(583,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(606,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(633,22): error TS2694: Namespace '"react"' has no exported member 'CSSProperties'.
+components/ui/sidebar.tsx(640,56): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(658,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/sidebar.tsx(675,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/slider.tsx(15,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/switch.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/table.tsx(7,47): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/table.tsx(22,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/table.tsx(32,51): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/table.tsx(42,53): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/table.tsx(55,50): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/table.tsx(68,51): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/table.tsx(81,51): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/table.tsx(97,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/tabs.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/tabs.tsx(24,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/tabs.tsx(40,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/tabs.tsx(56,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/textarea.tsx(5,50): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/toast.tsx(12,23): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/toast.tsx(13,9): error TS2694: Namespace '"react"' has no exported member 'ElementRef'.
+components/ui/toast.tsx(14,9): error TS2694: Namespace '"react"' has no exported member 'ComponentPropsWithoutRef'.
+components/ui/toast.tsx(15,6): error TS7031: Binding element 'className' implicitly has an 'any' type.
+components/ui/toast.tsx(15,29): error TS7006: Parameter 'ref' implicitly has an 'any' type.
+components/ui/toast.tsx(43,15): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/toast.tsx(44,9): error TS2694: Namespace '"react"' has no exported member 'ElementRef'.
+components/ui/toast.tsx(45,9): error TS2694: Namespace '"react"' has no exported member 'ComponentPropsWithoutRef'.
+components/ui/toast.tsx(47,6): error TS7031: Binding element 'className' implicitly has an 'any' type.
+components/ui/toast.tsx(47,17): error TS7031: Binding element 'variant' implicitly has an 'any' type.
+components/ui/toast.tsx(47,38): error TS7006: Parameter 'ref' implicitly has an 'any' type.
+components/ui/toast.tsx(58,21): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/toast.tsx(59,9): error TS2694: Namespace '"react"' has no exported member 'ElementRef'.
+components/ui/toast.tsx(60,9): error TS2694: Namespace '"react"' has no exported member 'ComponentPropsWithoutRef'.
+components/ui/toast.tsx(61,6): error TS7031: Binding element 'className' implicitly has an 'any' type.
+components/ui/toast.tsx(61,29): error TS7006: Parameter 'ref' implicitly has an 'any' type.
+components/ui/toast.tsx(73,20): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/toast.tsx(74,9): error TS2694: Namespace '"react"' has no exported member 'ElementRef'.
+components/ui/toast.tsx(75,9): error TS2694: Namespace '"react"' has no exported member 'ComponentPropsWithoutRef'.
+components/ui/toast.tsx(76,6): error TS7031: Binding element 'className' implicitly has an 'any' type.
+components/ui/toast.tsx(76,29): error TS7006: Parameter 'ref' implicitly has an 'any' type.
+components/ui/toast.tsx(91,20): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/toast.tsx(92,9): error TS2694: Namespace '"react"' has no exported member 'ElementRef'.
+components/ui/toast.tsx(93,9): error TS2694: Namespace '"react"' has no exported member 'ComponentPropsWithoutRef'.
+components/ui/toast.tsx(94,6): error TS7031: Binding element 'className' implicitly has an 'any' type.
+components/ui/toast.tsx(94,29): error TS7006: Parameter 'ref' implicitly has an 'any' type.
+components/ui/toast.tsx(103,26): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/toast.tsx(104,9): error TS2694: Namespace '"react"' has no exported member 'ElementRef'.
+components/ui/toast.tsx(105,9): error TS2694: Namespace '"react"' has no exported member 'ComponentPropsWithoutRef'.
+components/ui/toast.tsx(106,6): error TS7031: Binding element 'className' implicitly has an 'any' type.
+components/ui/toast.tsx(106,29): error TS7006: Parameter 'ref' implicitly has an 'any' type.
+components/ui/toast.tsx(115,25): error TS2694: Namespace '"react"' has no exported member 'ComponentPropsWithoutRef'.
+components/ui/toast.tsx(117,33): error TS2694: Namespace '"react"' has no exported member 'ReactElement'.
+components/ui/toaster.tsx(18,31): error TS7031: Binding element 'id' implicitly has an 'any' type.
+components/ui/toaster.tsx(18,35): error TS7031: Binding element 'title' implicitly has an 'any' type.
+components/ui/toaster.tsx(18,42): error TS7031: Binding element 'description' implicitly has an 'any' type.
+components/ui/toaster.tsx(18,55): error TS7031: Binding element 'action' implicitly has an 'any' type.
+components/ui/toggle-group.tsx(10,28): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/toggle-group.tsx(23,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/toggle-group.tsx(49,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/toggle.tsx(36,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/tooltip.tsx(11,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/tooltip.tsx(23,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/tooltip.tsx(33,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/tooltip.tsx(42,10): error TS2694: Namespace '"react"' has no exported member 'ComponentProps'.
+components/ui/use-mobile.tsx(6,35): error TS2347: Untyped function calls may not accept type arguments.
+components/ui/use-toast.ts(13,17): error TS2694: Namespace '"react"' has no exported member 'ReactNode'.
+components/ui/use-toast.ts(14,23): error TS2694: Namespace '"react"' has no exported member 'ReactNode'.
+components/ui/use-toast.ts(158,22): error TS7006: Parameter 'open' implicitly has an 'any' type.
+components/ui/use-toast.ts(172,29): error TS2347: Untyped function calls may not accept type arguments.
+hooks/use-mobile.ts(6,35): error TS2347: Untyped function calls may not accept type arguments.
+hooks/use-toast.ts(13,17): error TS2694: Namespace '"react"' has no exported member 'ReactNode'.
+hooks/use-toast.ts(14,23): error TS2694: Namespace '"react"' has no exported member 'ReactNode'.
+hooks/use-toast.ts(158,22): error TS7006: Parameter 'open' implicitly has an 'any' type.
+hooks/use-toast.ts(172,29): error TS2347: Untyped function calls may not accept type arguments.
+lib/portfolio-context.tsx(33,26): error TS2347: Untyped function calls may not accept type arguments.
+lib/portfolio-context.tsx(35,61): error TS2709: Cannot use namespace 'ReactNode' as a type.

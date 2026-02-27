@@ -24,6 +24,7 @@ interface PortfolioContextType {
   addImage: (image: PortfolioImage) => void
   deleteImage: (id: string) => void
   addCategory: (category: PortfolioCategory) => void
+  deleteCategory: (id: string) => void
   addService: (service: Partial<Service>) => void
   deleteService: (id: string) => void
   generateUploadUrl: () => Promise<string>
@@ -82,6 +83,12 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
     await addCategoryMutation(category)
   }
 
+  const deleteCategoryMutation = useMutation(api.siteContent.deleteCategory)
+
+  const deleteCategory = async (id: string) => {
+    await deleteCategoryMutation({ id })
+  }
+
   const updateService = async (service: Service) => {
     await updateServiceMutation(service)
   }
@@ -128,6 +135,7 @@ export function PortfolioProvider({ children }: { children: ReactNode }) {
         addImage,
         deleteImage,
         addCategory,
+        deleteCategory,
         addService,
         deleteService,
         generateUploadUrl,

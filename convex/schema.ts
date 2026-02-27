@@ -37,4 +37,17 @@ export default defineSchema({
         username: v.string(),
         password: v.string(),
     }),
+
+    appointments: defineTable({
+        customerName: v.string(),
+        customerEmail: v.string(),
+        customerPhone: v.string(),
+        serviceId: v.string(),
+        date: v.string(),      // Format: YYYY-MM-DD
+        timeSlot: v.string(),  // Format: HH:MM AM/PM
+        duration: v.string(),  // Format: "X Hours", "X.X Hours", etc.
+        status: v.string(),    // "pending" | "confirmed" | "completed" | "cancelled"
+        googleEventId: v.optional(v.string()),
+        createdAt: v.number(),
+    }).index("by_date", ["date"]),
 });

@@ -1,24 +1,25 @@
 "use client"
 
-import type React from "react"
-import { useState } from "react"
+import React, { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Loader2, CheckCircle, AlertCircle } from "lucide-react"
-import type { BookingData } from "@/lib/booking-data"
+import { useMutation, useAction } from "convex/react"
+import { api } from "@/convex/_generated/api"
 
 interface BookingFormProps {
   serviceId: string
   serviceName: string
+  duration: string
   date: string
   time: string
   onBack: () => void
   onSuccess: () => void
 }
 
-export function BookingForm({ serviceId, serviceName, date, time, onBack, onSuccess }: BookingFormProps) {
+export function BookingForm({ serviceId, serviceName, duration, date, time, onBack, onSuccess }: BookingFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,33 +30,40 @@ export function BookingForm({ serviceId, serviceName, date, time, onBack, onSucc
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
 
+  const createAppointment = useMutation(api.appointments.createAppointment)
+  const sendWhatsAppNotification = useAction(api.whatsapp.sendWhatsAppNotification)
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setStatus("idle")
 
-    const bookingData: BookingData = {
-      serviceId,
-      date,
-      time,
-      ...formData,
-    }
-
     try {
-      const response = await fetch("/api/booking", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bookingData),
+      // 1. Create the appointment in Convex
+      await createAppointment({
+        serviceId,
+        date,
+        timeSlot: time,
+        duration,
+        customerName: formData.name,
+        customerEmail: formData.email,
+        customerPhone: formData.phone,
       })
 
-      const result = await response.json()
-
-      if (!response.ok) {
-        throw new Error(result.error || "Booking failed")
+      // 2. Send WhatsApp notification
+      try {
+        await sendWhatsAppNotification({
+          customerName: formData.name,
+          serviceName,
+          date,
+          timeSlot: time,
+        })
+      } catch (waError) {
+        console.error("WhatsApp notification failed, but booking succeeded", waError)
       }
 
       setStatus("success")
-      setTimeout(onSuccess, 2000)
+      setTimeout(onSuccess, 3000)
     } catch (error) {
       setStatus("error")
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong")

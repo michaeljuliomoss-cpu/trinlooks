@@ -8,7 +8,11 @@
  * @module
  */
 
+import type * as appointments from "../appointments.js";
+import type * as availability from "../availability.js";
+import type * as calendarApi from "../calendarApi.js";
 import type * as siteContent from "../siteContent.js";
+import type * as whatsapp from "../whatsapp.js";
 
 import type {
   ApiFromModules,
@@ -17,7 +21,11 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  appointments: typeof appointments;
+  availability: typeof availability;
+  calendarApi: typeof calendarApi;
   siteContent: typeof siteContent;
+  whatsapp: typeof whatsapp;
 }>;
 
 /**

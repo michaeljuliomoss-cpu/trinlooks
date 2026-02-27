@@ -80,9 +80,9 @@ interface PortfolioGalleryProps {
 }
 
 export function PortfolioGallery({ categoryId, onClose }: PortfolioGalleryProps) {
-  const { categories, images } = usePortfolio()
+  const { categories, portfolioImages } = usePortfolio()
   const category = categories.find((c) => c.id === categoryId)
-  const categoryImages = images.filter((img) => img.categoryId === categoryId)
+  const categoryImages = portfolioImages.filter((img) => img.categoryId === categoryId)
 
   if (!category) return null
 

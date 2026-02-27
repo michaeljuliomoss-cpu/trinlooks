@@ -40,17 +40,25 @@ export interface SiteContent {
   aboutSubtitle: string
   aboutDescription1: string
   aboutDescription2: string
+  aboutText: string
+  aboutImage: string
 
   // Services section
   servicesTitle: string
+  servicesSubtitle: string
   servicesDescription: string
 
   // Contact section
   contactTitle: string
+  contactSubtitle: string
   contactDescription: string
   contactEmail: string
+  contactPhone: string
   contactInstagram: string
+  instagramHandle: string
+  youtubeUrl: string
   contactLocation: string
+  contactAddress: string
 
   // Global
   bookingUrl: string
@@ -101,19 +109,27 @@ export const defaultSiteContent: SiteContent = {
   heroLocation: "BASED IN LONDON • WORLDWIDE",
 
   aboutPortrait: "/images/about-portrait.jpg",
+  aboutImage: "/images/about-portrait.jpg",
   aboutTitle: "TRINITY",
   aboutSubtitle: "THE VISIONARY BEHIND THE LOOKS",
   aboutDescription1: "With over 5 years of experience in the fashion and beauty industry, Trinity has established herself as a versatile model and a creative force. Her work is characterized by a unique blend of elegance, edge, and an innate ability to translate complex concepts into compelling visual narratives.",
   aboutDescription2: "Beyond modeling, Trinity's expertise extends to creative direction and professional makeup artistry, allowing her to provide a cohesive and holistic approach to every project she undertakes.",
+  aboutText: "With over 5 years of experience in the fashion and beauty industry...",
 
   servicesTitle: "ELEVATE YOUR VISION",
+  servicesSubtitle: "Premium offerings",
   servicesDescription: "From high-fashion editorial sets to personalized beauty transformations, I offer a range of specialized services designed to bring your unique vision to life with precision and artistry.",
 
   contactTitle: "START A CONVERSATION",
+  contactSubtitle: "Get in touch",
   contactDescription: "Have a project in mind or looking to collaborate? Reach out to discuss how we can create something extraordinary together.",
   contactEmail: "hello@trinlooks.com",
+  contactPhone: "+1 (555) 123-4567",
   contactInstagram: "@trinlooks",
+  instagramHandle: "trinlooks",
+  youtubeUrl: "https://youtube.com",
   contactLocation: "London, UK & Available for Travel",
+  contactAddress: "London, UK",
 
   bookingUrl: "https://booking.setmore.com/scheduleappointment/your-link-here",
 }

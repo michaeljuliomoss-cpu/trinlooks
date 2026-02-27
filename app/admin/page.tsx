@@ -2,6 +2,8 @@
 
 import React, { useState } from "react"
 import { usePortfolio } from "@/lib/portfolio-context"
+import { useQuery, useMutation } from "convex/react"
+import { api } from "@/convex/_generated/api"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -25,7 +27,10 @@ import {
   ArrowRight,
   Clock,
   Upload,
-  Instagram
+  Instagram,
+  CalendarRange,
+  CheckCircle,
+  XCircle
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -54,8 +59,18 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState("")
 
   const [editContent, setEditContent] = useState(siteContent)
-  const [activeTab, setActiveTab] = useState("hero")
-  const [uploadingCategory, setUploadingCategory] = useState(null)
+  const [activeTab, setActiveTab] = useState("appointments")
+  const [uploadingCategory, setUploadingCategory] = useState<string | null>(null)
+
+  const appointments = useQuery(api.appointments.getAppointments) || []
+  const confirmAppointment = useMutation(api.appointments.confirmAppointment)
+  const cancelAppointment = useMutation(api.appointments.cancelAppointment)
+  const completeAppointment = useMutation(api.appointments.completeAppointment)
+  const deleteAppointment = useMutation(api.appointments.deleteAppointment)
+
+  const sortedAppointments = [...appointments].sort((a, b) => {
+    return a.date.localeCompare(b.date) || a.timeSlot.localeCompare(b.timeSlot)
+  })
 
   const handleLogin = (e: any) => {
     e.preventDefault()
@@ -105,15 +120,18 @@ export default function AdminPage() {
     }
   }
 
-  const handleUpdateServiceField = async (id: string, field: string, value: string) => {
-    await updateService(id, { [field]: value })
+  const handleUpdateServiceField = async (id: string, field: keyof typeof services[0], value: string) => {
+    const serviceToUpdate = services.find((s: any) => s.id === id)
+    if (serviceToUpdate) {
+      await updateService({ ...serviceToUpdate, [field]: value })
+    }
   }
 
   const handleAddCategory = async () => {
-    const title = prompt("Enter category title:")
-    if (title) {
-      const slug = title.toLowerCase().replace(/\s+/g, "-")
-      await addCategory({ title, slug, coverImage: "/placeholder.svg" })
+    const name = prompt("Enter category title:")
+    if (name) {
+      const id = name.toLowerCase().replace(/\s+/g, "-")
+      await addCategory({ id, name, description: "New Category", coverImage: "/placeholder.svg" })
     }
   }
 
@@ -273,6 +291,7 @@ export default function AdminPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-b border-border/40 pb-6">
             <TabsList className="bg-muted/30 p-1 border border-border/30 backdrop-blur-sm h-auto flex flex-wrap gap-1 w-full sm:w-auto">
               {[
+                { val: "appointments", icon: CalendarRange, label: "Appointments" },
                 { val: "hero", icon: Layout, label: "Hero" },
                 { val: "about", icon: User, label: "About" },
                 { val: "services", icon: Briefcase, label: "Services" },
@@ -294,6 +313,71 @@ export default function AdminPage() {
               <Save size={18} /> Publish Content
             </Button>
           </div>
+
+          {/* Appointments Tab */}
+          <TabsContent value="appointments" className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-serif text-2xl">Manage Appointments</h3>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4">
+              {sortedAppointments.length === 0 ? (
+                <div className="text-center py-12 bg-muted/20 rounded-xl border border-border/40">
+                  <CalendarRange className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
+                  <p className="text-muted-foreground">No appointments booked yet.</p>
+                </div>
+              ) : (
+                sortedAppointments.map((app) => (
+                  <Card key={app._id} className={`border-border/40 shadow-sm overflow-hidden ${app.status === 'completed' || app.status === 'cancelled' ? 'opacity-60' : ''}`}>
+                    <div className="flex flex-col md:flex-row md:items-center justify-between p-6 gap-6">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3">
+                          <h4 className="font-serif text-xl">{app.customerName}</h4>
+                          <Badge variant="outline" className={
+                            app.status === 'pending' ? 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20' :
+                              app.status === 'confirmed' ? 'bg-green-500/10 text-green-600 border-green-500/20' :
+                                app.status === 'completed' ? 'bg-blue-500/10 text-blue-600 border-blue-500/20' :
+                                  'bg-red-500/10 text-red-600 border-red-500/20'
+                          }>
+                            {app.status.toUpperCase()}
+                          </Badge>
+                        </div>
+                        <p className="text-sm font-medium text-accent">Service: {services.find(s => s.id === app.serviceId)?.name || 'Unknown'}</p>
+                        <p className="text-sm text-muted-foreground flex items-center gap-2">
+                          <Clock size={14} /> {app.date} at {app.timeSlot} ({app.duration})
+                        </p>
+                        <div className="text-sm text-muted-foreground flex items-center gap-4 pt-2">
+                          <span className="flex items-center gap-1.5"><Mail size={14} /> {app.customerEmail}</span>
+                          <span className="flex items-center gap-1.5"><Phone size={14} /> {app.customerPhone}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-2">
+                        {app.status === 'pending' && (
+                          <>
+                            <Button onClick={() => confirmAppointment({ id: app._id })} className="bg-green-600 hover:bg-green-700 text-white gap-2 h-9">
+                              <CheckCircle size={16} /> Confirm
+                            </Button>
+                            <Button onClick={() => cancelAppointment({ id: app._id })} variant="destructive" className="gap-2 h-9">
+                              <XCircle size={16} /> Decline
+                            </Button>
+                          </>
+                        )}
+                        {app.status === 'confirmed' && (
+                          <Button onClick={() => completeAppointment({ id: app._id })} className="bg-blue-600 hover:bg-blue-700 text-white gap-2 h-9">
+                            <CheckCircle size={16} /> Mark Completed
+                          </Button>
+                        )}
+                        <Button onClick={() => deleteAppointment({ id: app._id })} variant="ghost" size="icon" className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 h-9 w-9">
+                          <Trash2 size={16} />
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
+                ))
+              )}
+            </div>
+          </TabsContent>
 
           {/* Hero Tab */}
           <TabsContent value="hero" className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -464,17 +548,17 @@ export default function AdminPage() {
                   </div>
                   <CardContent className="p-4 flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-lg mb-1">{cat.title}</p>
-                      <p className="text-xs text-muted-foreground uppercase tracking-widest">{cat.slug}</p>
+                      <p className="font-medium text-lg mb-1">{cat.name}</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-widest">{cat.id}</p>
                     </div>
-                    <Badge variant="secondary" className="bg-accent/10 text-accent border-none">{portfolioImages.filter((img: any) => img.category === cat.slug).length} Photos</Badge>
+                    <Badge variant="secondary" className="bg-accent/10 text-accent border-none">{portfolioImages.filter((img: any) => img.categoryId === cat.id).length} Photos</Badge>
                   </CardContent>
                   <CardFooter className="p-4 pt-0 flex flex-col gap-2">
                     <Button
                       variant="ghost"
                       className="w-full border border-border/50 text-xs h-8 gap-2 hover:bg-accent hover:text-accent-foreground relative overflow-hidden"
                     >
-                      {uploadingCategory === cat.slug ? (
+                      {uploadingCategory === cat.id ? (
                         <span className="animate-pulse">Uploading...</span>
                       ) : (
                         <>
@@ -483,7 +567,7 @@ export default function AdminPage() {
                             type="file"
                             accept="image/*"
                             className="absolute inset-0 opacity-0 cursor-pointer"
-                            onChange={(e: any) => handlePortfolioImageUpload(e, cat.slug)}
+                            onChange={(e: any) => handlePortfolioImageUpload(e, cat.id)}
                           />
                         </>
                       )}

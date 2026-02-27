@@ -7,8 +7,19 @@ import { BookingCalendar } from "@/components/booking-calendar"
 import { BookingTimeSlots } from "@/components/booking-time-slots"
 import { BookingForm } from "@/components/booking-form"
 import { usePortfolio } from "@/lib/portfolio-context"
-import { DEFAULT_TIME_SLOTS, formatDate } from "@/lib/booking-data"
+import { useQuery } from "convex/react"
+import { api } from "@/convex/_generated/api"
+import { format } from "date-fns"
 import { cn } from "@/lib/utils"
+
+export function formatDate(date: Date) {
+  return new Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(date)
+}
 
 interface BookingModalProps {
   isOpen: boolean
@@ -55,6 +66,13 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
   if (!isOpen) return null
 
   const selectedService = services.find((s) => s.id === selectedServiceId)
+
+  // Fetch available slots from Convex
+  const formattedDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : ""
+  const availableSlots = useQuery(api.availability.getAvailableSlots,
+    selectedDate && selectedService ?
+      { date: formattedDate, serviceDuration: selectedService.duration } : "skip"
+  )
 
   const handleServiceSelect = (serviceId: string) => {
     setSelectedServiceId(serviceId)
@@ -172,11 +190,23 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
 
               {selectedDate ? (
                 <div className="space-y-6">
-                  <BookingTimeSlots
-                    slots={DEFAULT_TIME_SLOTS}
-                    selectedTime={selectedTime}
-                    onTimeSelect={setSelectedTime}
-                  />
+                  {selectedService && availableSlots !== undefined ? (
+                    availableSlots.length > 0 ? (
+                      <BookingTimeSlots
+                        slots={availableSlots}
+                        selectedTime={selectedTime}
+                        onTimeSelect={setSelectedTime}
+                      />
+                    ) : (
+                      <div className="bg-card border border-border rounded-xl p-6 text-center">
+                        <p className="text-muted-foreground">No available time slots for this date.</p>
+                      </div>
+                    )
+                  ) : (
+                    <div className="bg-card border border-border rounded-xl p-6 flex justify-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
+                    </div>
+                  )}
 
                   {selectedTime && (
                     <div className="bg-accent/10 border border-accent/30 rounded-xl p-4">
@@ -213,6 +243,7 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
               <BookingForm
                 serviceId={selectedService.id}
                 serviceName={selectedService.name}
+                duration={selectedService.duration}
                 date={formatDate(selectedDate)}
                 time={selectedTime}
                 onBack={handleBack}
