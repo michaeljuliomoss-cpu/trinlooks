@@ -45,6 +45,7 @@ export const viewport: Viewport = {
 }
 
 import { ConvexClientProvider } from "@/components/convex-client-provider"
+import { ThemeCustomizationProvider } from "@/components/theme-customization-provider"
 
 export default function RootLayout({
   children,
@@ -55,7 +56,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`font-sans antialiased`}>
         <ConvexClientProvider>
-          <PortfolioProvider>{children}</PortfolioProvider>
+          <PortfolioProvider>
+            <ThemeCustomizationProvider>{children}</ThemeCustomizationProvider>
+          </PortfolioProvider>
         </ConvexClientProvider>
         <Analytics />
       </body>

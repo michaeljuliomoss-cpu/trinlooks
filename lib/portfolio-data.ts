@@ -62,6 +62,15 @@ export interface SiteContent {
 
   // Global
   bookingUrl: string
+
+  // Theme Customization
+  themeColors: {
+    primary: string
+    accent: string
+    background: string
+    card: string
+    secondary: string
+  }
 }
 
 // Default categories
@@ -112,9 +121,9 @@ export const defaultSiteContent: SiteContent = {
   aboutImage: "/images/about-portrait.jpg",
   aboutTitle: "TRINITY",
   aboutSubtitle: "THE VISIONARY BEHIND THE LOOKS",
-  aboutDescription1: "With over 5 years of experience in the fashion and beauty industry, Trinity has established herself as a versatile model and a creative force. Her work is characterized by a unique blend of elegance, edge, and an innate ability to translate complex concepts into compelling visual narratives.",
+  aboutDescription1: "Doing what nobody can <3",
   aboutDescription2: "Beyond modeling, Trinity's expertise extends to creative direction and professional makeup artistry, allowing her to provide a cohesive and holistic approach to every project she undertakes.",
-  aboutText: "With over 5 years of experience in the fashion and beauty industry...",
+  aboutText: "Doing what nobody can <3",
 
   servicesTitle: "ELEVATE YOUR VISION",
   servicesSubtitle: "Premium offerings",
@@ -123,15 +132,23 @@ export const defaultSiteContent: SiteContent = {
   contactTitle: "START A CONVERSATION",
   contactSubtitle: "Get in touch",
   contactDescription: "Have a project in mind or looking to collaborate? Reach out to discuss how we can create something extraordinary together.",
-  contactEmail: "hello@trinlooks.com",
-  contactPhone: "+1 (555) 123-4567",
+  contactEmail: "trinityfeaste2@icloud.com",
+  contactPhone: "(242) 825-3035",
   contactInstagram: "@trinlooks",
   instagramHandle: "trinlooks",
   youtubeUrl: "https://youtube.com",
-  contactLocation: "London, UK & Available for Travel",
-  contactAddress: "London, UK",
+  contactLocation: "Gladstone Road, Nassau, New Providence",
+  contactAddress: "Gladstone Road, Nassau, New Providence",
 
-  bookingUrl: "https://booking.setmore.com/scheduleappointment/your-link-here",
+  bookingUrl: "https://trinslooks.setmore.com/book",
+
+  themeColors: {
+    primary: "#D4AF37",
+    accent: "#C97B5A",
+    background: "#0B0114",
+    card: "#1A0A2E",
+    secondary: "#1F0535",
+  },
 }
 
 // Default services

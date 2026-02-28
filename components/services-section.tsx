@@ -45,13 +45,13 @@ function ServiceCard({ id, name, description, duration, price, index, onBookNow 
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <div
-        className="relative bg-card/40 backdrop-blur-md border border-white/5 rounded-2xl p-8 transition-all duration-500 ease-out h-full flex flex-col group-hover:border-accent/40 group-hover:bg-card/60"
+        className="relative bg-card/40 backdrop-blur-md border border-white/5 rounded-2xl p-8 transition-all duration-500 ease-out h-full flex flex-col group-hover:border-primary/40 group-hover:bg-card/60"
         style={{
           transform: `rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg) translateY(-${transform.lift}px)`,
           boxShadow:
             transform.lift > 0
-              ? `0 20px 40px -10px oklch(0.4 0.1 350 / 0.2)`
-              : "0 4px 20px rgba(0,0,0,0.1)",
+              ? `0 20px 40px -10px oklch(0.85 0.15 80 / 0.15)`
+              : "0 4px 20px rgba(0,0,0,0.2)",
         }}
       >
         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-2xl" />
@@ -108,8 +108,8 @@ export function ServicesSection() {
         <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-border to-transparent" />
         <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-border to-transparent" />
 
-        <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-accent blur-[150px] opacity-10 pointer-events-none" />
-        <div className="absolute -top-24 right-0 w-[400px] h-[400px] bg-[oklch(0.4_0.12_300)] blur-[120px] opacity-10 pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-[500px] h-[500px] bg-primary blur-[150px] opacity-10 pointer-events-none" />
+        <div className="absolute -top-24 right-0 w-[400px] h-[400px] bg-secondary blur-[120px] opacity-40 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16">

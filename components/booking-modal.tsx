@@ -63,8 +63,6 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
     }
   }, [isOpen])
 
-  if (!isOpen) return null
-
   const selectedService = services.find((s) => s.id === selectedServiceId)
 
   // Fetch available slots from Convex
@@ -73,6 +71,8 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
     selectedDate && selectedService ?
       { date: formattedDate, serviceDuration: selectedService.duration } : "skip"
   )
+
+  if (!isOpen) return null
 
   const handleServiceSelect = (serviceId: string) => {
     setSelectedServiceId(serviceId)
@@ -125,7 +125,7 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
           <div
             className={cn(
               "flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-colors",
-              step === "service" ? "bg-accent text-accent-foreground" : "bg-accent/20 text-accent",
+              step === "service" ? "bg-primary text-primary-foreground" : "bg-primary/20 text-primary",
             )}
           >
             <Sparkles size={14} />
@@ -136,9 +136,9 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
             className={cn(
               "flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-colors",
               step === "datetime"
-                ? "bg-accent text-accent-foreground"
+                ? "bg-primary text-primary-foreground"
                 : step === "details"
-                  ? "bg-accent/20 text-accent"
+                  ? "bg-primary/20 text-primary"
                   : "bg-muted text-muted-foreground",
             )}
           >
@@ -149,7 +149,7 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
           <div
             className={cn(
               "flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-colors",
-              step === "details" ? "bg-accent text-accent-foreground" : "bg-muted text-muted-foreground",
+              step === "details" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground",
             )}
           >
             <Clock size={14} />
@@ -168,8 +168,8 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
                   onClick={() => handleServiceSelect(service.id)}
                   className={cn(
                     "text-left p-5 rounded-xl border transition-all duration-200",
-                    "bg-card border-border hover:border-accent hover:bg-accent/5",
-                    selectedServiceId === service.id && "border-accent bg-accent/10",
+                    "bg-card border-border hover:border-primary hover:bg-primary/5",
+                    selectedServiceId === service.id && "border-primary bg-primary/10",
                   )}
                 >
                   <h3 className="font-serif text-lg text-foreground mb-1">{service.name}</h3>
@@ -209,17 +209,17 @@ export function BookingModal({ isOpen, onClose, preselectedServiceId }: BookingM
                   )}
 
                   {selectedTime && (
-                    <div className="bg-accent/10 border border-accent/30 rounded-xl p-4">
+                    <div className="bg-primary/10 border border-primary/30 rounded-xl p-4">
                       <h4 className="font-medium text-foreground mb-2">Your Selection</h4>
                       <p className="text-sm text-muted-foreground">
-                        <span className="text-accent">{selectedService?.name}</span>
+                        <span className="text-primary">{selectedService?.name}</span>
                       </p>
                       <p className="text-sm text-muted-foreground">
                         {formatDate(selectedDate)} at {selectedTime}
                       </p>
                       <Button
                         onClick={handleDateTimeConfirm}
-                        className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90"
+                        className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90"
                       >
                         Continue
                       </Button>

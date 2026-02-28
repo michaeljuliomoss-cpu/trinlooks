@@ -2,6 +2,8 @@
 
 import { useState, useRef, type FormEvent, type MouseEvent } from "react"
 import { usePortfolio } from "@/lib/portfolio-context"
+import { useAction } from "convex/react"
+import { api } from "@/convex/_generated/api"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -18,14 +20,38 @@ export function ContactSection() {
   const portfolio = usePortfolio()
   const siteContent = portfolio?.siteContent
 
-  const [formState, setFormState] = useState<"idle" | "success" | "error">("idle")
+  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [buttonTransform, setButtonTransform] = useState({ rotateX: 0, rotateY: 0 })
   const buttonRef = useRef<HTMLButtonElement>(null)
 
-  const handleSubmit = (e: FormEvent) => {
+  const sendEmail = useAction(api.emails.sendContactEmail)
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setFormState("success")
-    setTimeout(() => setFormState("idle"), 5000)
+    setFormState("loading")
+
+    const formData = new FormData(e.currentTarget)
+    const name = formData.get("name") as string
+    const email = formData.get("email") as string
+    const service = formData.get("service") as string || "general"
+    const message = formData.get("message") as string
+
+    try {
+      const result = await sendEmail({ name, email, service, message })
+      if (result.success) {
+        setFormState("success")
+          ; (e.target as HTMLFormElement).reset()
+      } else {
+        setFormState("error")
+      }
+    } catch (error) {
+      console.error(error)
+      setFormState("error")
+    }
+
+    setTimeout(() => {
+      if (formState !== "loading") setFormState("idle")
+    }, 5000)
   }
 
   const handleButtonMouseMove = (e: MouseEvent<HTMLButtonElement>) => {
@@ -103,6 +129,7 @@ export function ContactSection() {
                 </label>
                 <Input
                   id="name"
+                  name="name"
                   placeholder="Your Name"
                   required
                   className="bg-white/5 border-white/10 focus:border-accent/50 focus:ring-accent/20 rounded-xl transition-all h-12 px-4 text-base"
@@ -114,6 +141,7 @@ export function ContactSection() {
                 </label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="hello@example.com"
                   required
@@ -126,7 +154,7 @@ export function ContactSection() {
               <label htmlFor="service" className="text-sm font-medium text-foreground/80 ml-1">
                 Requested Service
               </label>
-              <Select>
+              <Select name="service">
                 <SelectTrigger className="bg-white/5 border-white/10 focus:border-accent/50 focus:ring-accent/20 rounded-xl h-12 px-4 text-base">
                   <SelectValue placeholder="Select a service" />
                 </SelectTrigger>
@@ -146,6 +174,7 @@ export function ContactSection() {
               </label>
               <Textarea
                 id="message"
+                name="message"
                 placeholder="Tell me about your vision or project..."
                 rows={6}
                 required
@@ -160,12 +189,13 @@ export function ContactSection() {
                 size="lg"
                 onMouseMove={handleButtonMouseMove}
                 onMouseLeave={handleButtonMouseLeave}
-                className="w-full h-14 bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 shadow-xl shadow-accent/20 rounded-xl font-serif text-xl tracking-wide group"
+                className="w-full h-14 bg-accent text-accent-foreground hover:bg-accent/90 transition-all duration-300 shadow-xl shadow-accent/20 rounded-xl font-serif text-xl tracking-wide group disabled:opacity-50"
                 style={{
                   transform: `rotateX(${buttonTransform.rotateX}deg) rotateY(${buttonTransform.rotateY}deg)`,
                 }}
+                disabled={formState === "loading"}
               >
-                Send Inquiry
+                {formState === "loading" ? "Sending..." : "Send Inquiry"}
                 <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
               </Button>
             </div>

@@ -14,7 +14,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
-            <Link href="#home" className="font-serif text-3xl tracking-tight text-foreground block">
+            <Link href="/" className="font-serif text-3xl tracking-tight text-foreground block">
               Trin's <span className="text-accent">Looks</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
@@ -43,16 +43,16 @@ export function Footer() {
             <h4 className="font-serif text-lg text-foreground mb-6">Explore</h4>
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li>
-                <Link href="#portfolio" className="hover:text-accent transition-colors">Portfolio</Link>
+                <Link href="/portfolio" className="hover:text-accent transition-colors">Portfolio</Link>
               </li>
               <li>
-                <Link href="#services" className="hover:text-accent transition-colors">Services</Link>
+                <Link href="/services" className="hover:text-accent transition-colors">Services</Link>
               </li>
               <li>
-                <Link href="#about" className="hover:text-accent transition-colors">About Me</Link>
+                <Link href="/about" className="hover:text-accent transition-colors">About Me</Link>
               </li>
               <li>
-                <Link href="#contact" className="hover:text-accent transition-colors">Contact</Link>
+                <Link href="/contact" className="hover:text-accent transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
@@ -63,15 +63,15 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-muted-foreground">
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-accent mt-0.5" />
-                <span>New Providence, Bahamas</span>
+                <span>Gladstone Road, Nassau, New Providence</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-accent" />
-                <span>+1 (242) XXX-XXXX</span>
+                <span>(242) 825-3035</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-accent" />
-                <span>hello@trinslooks.com</span>
+                <span>trinityfeaste2@icloud.com</span>
               </li>
             </ul>
           </div>

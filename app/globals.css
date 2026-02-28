@@ -3,45 +3,45 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Dark cinematic theme with purple/pink accents */
+/* Deep Royal Purple theme with luxury gold accents */
 :root {
-  /* Dark charcoal base - soft noir feel */
-  --background: oklch(0.12 0.015 285);
-  --foreground: oklch(0.95 0.01 300);
+  /* Dark rich purple base - luxury noir feel */
+  --background: oklch(0.14 0.04 315);
+  --foreground: oklch(0.95 0.01 315);
 
   /* Cards slightly lighter than background */
-  --card: oklch(0.16 0.02 285);
-  --card-foreground: oklch(0.95 0.01 300);
+  --card: oklch(0.18 0.05 315);
+  --card-foreground: oklch(0.95 0.01 315);
 
-  --popover: oklch(0.16 0.02 285);
-  --popover-foreground: oklch(0.95 0.01 300);
+  --popover: oklch(0.18 0.05 315);
+  --popover-foreground: oklch(0.95 0.01 315);
 
-  /* Primary - soft off-white */
-  --primary: oklch(0.95 0.01 300);
-  --primary-foreground: oklch(0.12 0.015 285);
+  /* Primary - Luxury Soft Gold */
+  --primary: oklch(0.85 0.15 80);
+  --primary-foreground: oklch(0.14 0.04 315);
 
-  /* Secondary - darker charcoal */
-  --secondary: oklch(0.2 0.02 285);
-  --secondary-foreground: oklch(0.95 0.01 300);
+  /* Secondary - mid-tone purple */
+  --secondary: oklch(0.22 0.06 315);
+  --secondary-foreground: oklch(0.95 0.01 315);
 
   /* Muted tones */
-  --muted: oklch(0.18 0.015 285);
-  --muted-foreground: oklch(0.65 0.02 300);
+  --muted: oklch(0.20 0.03 315);
+  --muted-foreground: oklch(0.70 0.03 315);
 
-  /* Accent - muted pink/rose */
-  --accent: oklch(0.65 0.15 350);
-  --accent-foreground: oklch(0.98 0.01 300);
+  /* Accent - muted rose gold */
+  --accent: oklch(0.75 0.12 25);
+  --accent-foreground: oklch(0.98 0.01 315);
 
-  /* Secondary accent - soft purple */
-  --accent-secondary: oklch(0.55 0.12 300);
+  /* Secondary accent - soft lilac */
+  --accent-secondary: oklch(0.65 0.15 320);
 
   --destructive: oklch(0.55 0.2 25);
-  --destructive-foreground: oklch(0.98 0.01 300);
+  --destructive-foreground: oklch(0.98 0.01 315);
 
-  /* Borders - subtle dark lines */
-  --border: oklch(0.25 0.02 285);
-  --input: oklch(0.22 0.02 285);
-  --ring: oklch(0.65 0.15 350);
+  /* Borders - subtle purple-tinted lines */
+  --border: oklch(0.25 0.05 315);
+  --input: oklch(0.22 0.05 315);
+  --ring: oklch(0.85 0.15 80);
 
   --radius: 0.5rem;
 

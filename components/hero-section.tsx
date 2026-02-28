@@ -13,23 +13,11 @@ export function HeroSection() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect()
-        const x = (e.clientX - rect.left - rect.width / 2) / rect.width
-        const y = (e.clientY - rect.top - rect.height / 2) / rect.height
-        setMousePosition({ x, y })
-      }
+      // Disabling mousemove parallax as requested to smooth performance, especially for tablets
+      // If full removal of all lag is needed, removing event listeners is best.
     }
 
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    window.addEventListener("scroll", handleScroll)
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("scroll", handleScroll)
     }
   }, [])
 
@@ -37,25 +25,21 @@ export function HeroSection() {
     <section
       ref={heroRef}
       id="home"
-      className="relative h-screen min-h-[800px] w-full flex items-center justify-center overflow-hidden bg-[#9988ff]"
+      className="relative h-screen min-h-[800px] w-full flex items-center justify-center overflow-hidden bg-background"
     >
       {/* Dynamic Background Glows */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-[#8877ee] via-transparent to-[#aa99ff] opacity-50 z-0"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-background via-transparent to-secondary opacity-50 z-0"
       />
 
       {/* Floating orbs for depth */}
       <div
-        className="absolute top-[10%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-white/20 blur-[120px] pointer-events-none animate-pulse z-0"
-        style={{ transform: `translate(${mousePosition.x * -40}px, ${mousePosition.y * -40}px)` }}
+        className="absolute top-[10%] right-[10%] w-[40vw] h-[40vw] rounded-full bg-white/10 blur-[120px] pointer-events-none z-0"
       />
 
-      {/* Parallax Hero Image (Bottom Up, Behind Content) */}
+      {/* Static Hero Image (Bottom Up, Behind Content) - Removed Parallax */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] flex justify-center z-0 pointer-events-none"
-        style={{
-          transform: `translate(-50%, ${scrollY * 0.2}px)`, // Parallax effect
-        }}
       >
         {siteContent.heroImage ? (
           <img
@@ -70,7 +54,7 @@ export function HeroSection() {
           </div>
         )}
         {/* Gradient Overlay at bottom to blend image if needed */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#9988ff] to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       <div className="relative w-full h-full max-w-[1800px] mx-auto px-6 lg:px-12 flex flex-col justify-between py-12 lg:py-20 z-10">
@@ -113,8 +97,7 @@ export function HeroSection() {
           {/* If I put it on the Right, they hate it. if I put it Center-Screen, they hate it. */}
           {/* How about Center-Bottom? */}
           <div
-            className="transition-transform duration-300 ease-out z-20 mix-blend-overlay w-full lg:w-auto text-center lg:text-right"
-            style={{ transform: `translateX(${mousePosition.x * -10}px)` }}
+            className="z-20 mix-blend-overlay w-full lg:w-auto text-center lg:text-right"
           >
             <h1 className="font-serif text-[15vw] lg:text-[13vw] leading-[0.8] text-white tracking-tighter drop-shadow-sm">
               <span className="block">{siteContent.heroHeadlineTop}</span>

@@ -30,7 +30,9 @@ import {
   Instagram,
   CalendarRange,
   CheckCircle,
-  XCircle
+  XCircle,
+  Palette,
+  RotateCcw
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -61,6 +63,65 @@ export default function AdminPage() {
   const [editContent, setEditContent] = useState(siteContent)
   const [activeTab, setActiveTab] = useState("appointments")
   const [uploadingCategory, setUploadingCategory] = useState<string | null>(null)
+
+  // Theme color state
+  const defaultThemeColors = {
+    primary: "#D4AF37",
+    accent: "#C97B5A",
+    background: "#0B0114",
+    card: "#1A0A2E",
+    secondary: "#1F0535",
+  }
+  const [themeColors, setThemeColors] = useState(
+    siteContent?.themeColors || defaultThemeColors
+  )
+
+  const handleColorChange = (key: string, value: string) => {
+    const updated = { ...themeColors, [key]: value }
+    setThemeColors(updated)
+    if (editContent) {
+      setEditContent({ ...editContent, themeColors: updated })
+    }
+    // Live preview: apply immediately to document
+    const html = document.documentElement
+    const propMap: Record<string, string[]> = {
+      primary: ["--primary", "--color-primary", "--ring", "--color-ring"],
+      accent: ["--accent", "--color-accent"],
+      background: ["--background", "--color-background"],
+      card: ["--card", "--color-card", "--popover", "--color-popover"],
+      secondary: ["--secondary", "--color-secondary", "--muted", "--color-muted", "--input", "--color-input"],
+    }
+    if (propMap[key]) {
+      propMap[key].forEach(prop => html.style.setProperty(prop, value))
+    }
+  }
+
+  const handleResetColors = () => {
+    setThemeColors(defaultThemeColors)
+    if (editContent) {
+      setEditContent({ ...editContent, themeColors: defaultThemeColors })
+    }
+    // Remove all inline overrides
+    const html = document.documentElement
+    const allProps = [
+      "--background", "--color-background",
+      "--card", "--color-card", "--popover", "--color-popover",
+      "--primary", "--color-primary", "--ring", "--color-ring",
+      "--accent", "--color-accent",
+      "--secondary", "--color-secondary", "--muted", "--color-muted",
+      "--input", "--color-input", "--border", "--color-border",
+    ]
+    allProps.forEach(prop => html.style.removeProperty(prop))
+  }
+
+  const presetPalettes = [
+    { name: "Royal Purple", colors: { primary: "#D4AF37", accent: "#C97B5A", background: "#0B0114", card: "#1A0A2E", secondary: "#1F0535" } },
+    { name: "Ocean Blue", colors: { primary: "#50C4ED", accent: "#387ADF", background: "#060D1F", card: "#0D1B3E", secondary: "#1A2744" } },
+    { name: "Rose Gold", colors: { primary: "#E8B4B8", accent: "#C9A96E", background: "#1A0A0E", card: "#2E1520", secondary: "#351A28" } },
+    { name: "Midnight Green", colors: { primary: "#50FA7B", accent: "#8BE9FD", background: "#0A1612", card: "#142E24", secondary: "#1A3B2E" } },
+    { name: "Sunset Flame", colors: { primary: "#FF6B35", accent: "#FFB347", background: "#1A0A06", card: "#2E1A10", secondary: "#351F14" } },
+    { name: "Neon Pink", colors: { primary: "#FF10F0", accent: "#FF69B4", background: "#0A0612", card: "#1A102E", secondary: "#211535" } },
+  ]
 
   const appointments = useQuery(api.appointments.getAppointments) || []
   const confirmAppointment = useMutation(api.appointments.confirmAppointment)
@@ -199,10 +260,10 @@ export default function AdminPage() {
   if (!isAdmin) {
     return (
       <main className="min-h-screen bg-background flex items-center justify-center p-6 bg-gradient-to-br from-background via-muted/20 to-accent/5">
-        <Card className="w-full max-w-md shadow-2xl border-border/40 backdrop-blur-sm bg-card/80">
+        <Card className="w-full max-w-md shadow-2xl border-border/40 backdrop-blur-xl bg-card/60">
           <CardHeader className="text-center pb-2">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center border border-accent/20">
-              <Lock className="w-10 h-10 text-accent" />
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+              <Lock className="w-10 h-10 text-primary" />
             </div>
             <CardTitle className="font-serif text-3xl tracking-tight">Admin Access</CardTitle>
             <CardDescription className="text-base text-muted-foreground/80">Secure login for Trin&apos;s Looks CMS</CardDescription>
@@ -229,14 +290,14 @@ export default function AdminPage() {
                 />
               </div>
               {loginError && <p className="text-sm text-destructive bg-destructive/10 p-3 rounded-lg border border-destructive/20 text-center animate-pulse">{loginError}</p>}
-              <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground h-11 text-base font-medium shadow-lg shadow-accent/20 mt-4">
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-11 text-base font-medium shadow-lg shadow-primary/20 mt-4">
                 Login to Dashboard
               </Button>
             </form>
           </CardContent>
           <CardFooter className="justify-center border-t border-border/40 py-6">
             <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent/40" />
+              <span className="w-1.5 h-1.5 rounded-full bg-primary/40" />
               Authorized Personnel Only
             </p>
           </CardFooter>
@@ -245,7 +306,7 @@ export default function AdminPage() {
     )
   }
 
-  if (!siteContent || !editContent) return <div className="min-h-screen bg-background flex items-center justify-center font-serif text-2xl tracking-widest text-accent animate-pulse">Loading CMS Data...</div>
+  if (!siteContent || !editContent) return <div className="min-h-screen bg-background flex items-center justify-center font-serif text-2xl tracking-widest text-primary animate-pulse">Loading CMS Data...</div>
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-accent/30">
@@ -253,7 +314,7 @@ export default function AdminPage() {
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/40">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-accent-foreground shadow-lg shadow-accent/20">
+            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-primary-foreground shadow-lg shadow-primary/20">
               <Layout size={20} />
             </div>
             <div>
@@ -297,19 +358,20 @@ export default function AdminPage() {
                 { val: "services", icon: Briefcase, label: "Services" },
                 { val: "portfolio", icon: ImageIcon, label: "Portfolio" },
                 { val: "contact", icon: Mail, label: "Contact" },
+                { val: "appearance", icon: Palette, label: "Appearance" },
                 { val: "settings", icon: Settings, label: "Settings" }
               ].map(tab => (
                 <TabsTrigger
                   key={tab.val}
                   value={tab.val}
-                  className="data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-accent px-4 py-2 flex items-center gap-2 rounded-md transition-all h-10"
+                  className="data-[state=active]:bg-background data-[state=active]:shadow-md data-[state=active]:text-primary px-4 py-2 flex items-center gap-2 rounded-md transition-all h-10"
                 >
                   <tab.icon size={16} /> {tab.label}
                 </TabsTrigger>
               ))}
             </TabsList>
 
-            <Button onClick={handleSaveSiteContent} className="items-center gap-2 bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20 px-8 h-11 transition-all hover:scale-[1.02] active:scale-[0.98]">
+            <Button onClick={handleSaveSiteContent} className="items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 px-8 h-11 transition-all hover:scale-[1.02] active:scale-[0.98]">
               <Save size={18} /> Publish Content
             </Button>
           </div>
@@ -638,6 +700,195 @@ export default function AdminPage() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </TabsContent>
+
+          {/* Appearance Tab */}
+          <TabsContent value="appearance" className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+              {/* Color Pickers */}
+              <div className="lg:col-span-2 space-y-8">
+                <Card className="border-border/40 shadow-sm">
+                  <CardHeader className="bg-muted/20 border-b border-border/30">
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <Palette className="text-accent" size={18} /> Theme Colors
+                    </CardTitle>
+                    <CardDescription>Customize your website colors using the color wheel or by entering hex codes</CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-6 space-y-6">
+                    {[
+                      { key: "primary", label: "Primary (Gold/Buttons)", desc: "Main action color for buttons, links, and highlights" },
+                      { key: "accent", label: "Accent (Rose/Tags)", desc: "Secondary highlight color for badges, icons, and tags" },
+                      { key: "background", label: "Background", desc: "The main page background color" },
+                      { key: "card", label: "Card/Surface", desc: "Background color for cards, modals, and panels" },
+                      { key: "secondary", label: "Secondary/Muted", desc: "Mid-tone color for subtle backgrounds and borders" },
+                    ].map(({ key, label, desc }) => (
+                      <div key={key} className="flex items-center gap-6 p-4 rounded-xl border border-border/30 bg-card/50 hover:bg-card/80 transition-colors">
+                        {/* Color Wheel */}
+                        <div className="relative group">
+                          <div
+                            className="w-14 h-14 rounded-full border-2 border-border shadow-lg cursor-pointer overflow-hidden transition-transform hover:scale-110"
+                            style={{ backgroundColor: themeColors[key as keyof typeof themeColors] }}
+                          >
+                            <input
+                              type="color"
+                              value={themeColors[key as keyof typeof themeColors]}
+                              onChange={(e) => handleColorChange(key, e.target.value)}
+                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                              title={`Pick ${label}`}
+                            />
+                          </div>
+                        </div>
+                        {/* Info + Hex Input */}
+                        <div className="flex-1 space-y-1">
+                          <label className="text-sm font-semibold tracking-wide text-foreground">{label}</label>
+                          <p className="text-xs text-muted-foreground">{desc}</p>
+                        </div>
+                        {/* Hex Code Input */}
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-muted-foreground font-mono">#</span>
+                          <Input
+                            value={themeColors[key as keyof typeof themeColors].replace("#", "")}
+                            onChange={(e) => {
+                              let val = e.target.value.replace(/[^a-fA-F0-9]/g, "").slice(0, 6)
+                              if (val.length === 6) handleColorChange(key, `#${val}`)
+                            }}
+                            onBlur={(e) => {
+                              let val = e.target.value.replace(/[^a-fA-F0-9]/g, "").slice(0, 6)
+                              if (val.length === 6) handleColorChange(key, `#${val}`)
+                            }}
+                            maxLength={6}
+                            className="bg-muted/10 h-9 w-24 text-xs font-mono uppercase tracking-wider text-center"
+                            placeholder="D4AF37"
+                          />
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="flex items-center gap-3 pt-4">
+                      <Button
+                        onClick={handleResetColors}
+                        variant="outline"
+                        className="gap-2 border-border/50 text-muted-foreground hover:text-foreground"
+                      >
+                        <RotateCcw size={16} /> Reset to Default
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Preset Palettes */}
+                <Card className="border-border/40 shadow-sm">
+                  <CardHeader className="bg-muted/20 border-b border-border/30">
+                    <CardTitle className="text-lg">Quick Presets</CardTitle>
+                    <CardDescription>One-click theme presets to instantly transform your site</CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {presetPalettes.map((preset) => (
+                        <button
+                          key={preset.name}
+                          onClick={() => {
+                            setThemeColors(preset.colors)
+                            if (editContent) {
+                              setEditContent({ ...editContent, themeColors: preset.colors })
+                            }
+                            // Apply immediately
+                            const html = document.documentElement
+                            const propMap: Record<string, string[]> = {
+                              primary: ["--primary", "--color-primary", "--ring", "--color-ring"],
+                              accent: ["--accent", "--color-accent"],
+                              background: ["--background", "--color-background"],
+                              card: ["--card", "--color-card", "--popover", "--color-popover"],
+                              secondary: ["--secondary", "--color-secondary", "--muted", "--color-muted", "--input", "--color-input"],
+                            }
+                            Object.entries(preset.colors).forEach(([key, value]) => {
+                              if (propMap[key]) propMap[key].forEach(prop => html.style.setProperty(prop, value))
+                            })
+                          }}
+                          className="group p-4 rounded-xl border border-border/30 bg-card/50 hover:border-primary/50 hover:bg-card transition-all text-left"
+                        >
+                          <div className="flex gap-1.5 mb-3">
+                            {Object.values(preset.colors).map((color, i) => (
+                              <div
+                                key={i}
+                                className="w-6 h-6 rounded-full border border-white/10 shadow-sm"
+                                style={{ backgroundColor: color }}
+                              />
+                            ))}
+                          </div>
+                          <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">{preset.name}</p>
+                        </button>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Live Preview */}
+              <div className="space-y-8">
+                <Card className="border-border/40 shadow-sm sticky top-28">
+                  <CardHeader className="bg-muted/20 border-b border-border/30">
+                    <CardTitle className="text-lg">Live Preview</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-6 space-y-4">
+                    {/* Mini preview card */}
+                    <div
+                      className="rounded-xl p-5 border space-y-4 transition-colors duration-300"
+                      style={{ backgroundColor: themeColors.card, borderColor: themeColors.secondary }}
+                    >
+                      <div className="space-y-2">
+                        <h4 className="font-serif text-lg" style={{ color: "#f5f5f5" }}>Trin&apos;s Looks</h4>
+                        <p className="text-xs" style={{ color: "#999" }}>Preview of your color choices</p>
+                      </div>
+                      <div
+                        className="rounded-lg px-4 py-2.5 text-sm font-medium text-center transition-colors"
+                        style={{ backgroundColor: themeColors.primary, color: themeColors.background }}
+                      >
+                        Book Now
+                      </div>
+                      <div
+                        className="rounded-lg px-4 py-2.5 text-sm text-center border transition-colors"
+                        style={{ borderColor: themeColors.accent, color: themeColors.accent }}
+                      >
+                        View Portfolio
+                      </div>
+                      <div className="flex gap-2">
+                        <span
+                          className="text-xs px-2 py-1 rounded-full"
+                          style={{ backgroundColor: themeColors.accent + "20", color: themeColors.accent }}
+                        >
+                          Beauty
+                        </span>
+                        <span
+                          className="text-xs px-2 py-1 rounded-full"
+                          style={{ backgroundColor: themeColors.primary + "20", color: themeColors.primary }}
+                        >
+                          Editorial
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Page background preview */}
+                    <div
+                      className="rounded-xl p-4 border transition-colors duration-300"
+                      style={{ backgroundColor: themeColors.background, borderColor: themeColors.secondary }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full" style={{ backgroundColor: themeColors.primary }} />
+                        <div className="space-y-1">
+                          <div className="h-2 w-20 rounded" style={{ backgroundColor: themeColors.accent }} />
+                          <div className="h-2 w-14 rounded" style={{ backgroundColor: themeColors.secondary }} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-muted-foreground text-center pt-2">
+                      Changes preview live. Click &quot;Publish Content&quot; to save.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </TabsContent>
 

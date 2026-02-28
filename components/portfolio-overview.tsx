@@ -17,8 +17,8 @@ export function PortfolioOverview({ onCategoryClick }: PortfolioOverviewProps) {
         style={{ backgroundImage: `linear-gradient(to right, var(--foreground) 1px, transparent 1px), linear-gradient(to bottom, var(--foreground) 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
 
       {/* Subtle purple glow accent */}
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-[oklch(0.35_0.1_300)] blur-[250px] opacity-10 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-accent blur-[200px] opacity-5 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-primary blur-[250px] opacity-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-secondary blur-[200px] opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section header */}

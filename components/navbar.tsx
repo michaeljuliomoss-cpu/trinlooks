@@ -7,12 +7,14 @@ import { Menu, X, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BookingModal } from "@/components/booking-modal"
 
+import { usePathname } from "next/navigation"
+
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Home" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ]
 
 export function Navbar() {
@@ -28,12 +30,10 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const pathname = usePathname()
+
   const handleNavClick = (href: string) => {
     setMobileOpen(false)
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
   }
 
   return (
@@ -49,11 +49,8 @@ export function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link
-            href="#home"
-            onClick={(e: React.MouseEvent) => {
-              e.preventDefault()
-              handleNavClick("#home")
-            }}
+            href="/"
+            onClick={() => handleNavClick("/")}
             className="font-serif text-2xl tracking-tight text-foreground"
           >
             Trin's Looks
@@ -61,16 +58,26 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== "/")
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className={cn(
+                    "text-sm font-medium transition-colors relative group",
+                    isActive ? "text-accent" : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {link.label}
+                  <span className={cn(
+                    "absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300",
+                    isActive ? "w-full" : "w-0 group-hover:w-full"
+                  )} />
+                </Link>
+              )
+            })}
             <Button
               onClick={() => setIsBookingOpen(true)}
               size="sm"
@@ -99,15 +106,22 @@ export function Navbar() {
           )}
         >
           <div className="flex flex-col items-center gap-4">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </button>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== "/")
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className={cn(
+                    "text-base font-medium transition-colors",
+                    isActive ? "text-accent" : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
             <Button
               onClick={() => {
                 setMobileOpen(false)

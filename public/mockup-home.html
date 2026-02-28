@@ -1,0 +1,195 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7311d4",
+                        "accent-gold": "#D4AF37",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F5E0A3 50%, #B8860B 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<!-- Main Container -->
+<div class="relative flex h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-primary/10">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+<span class="material-symbols-outlined text-primary">menu</span>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-xl font-extrabold tracking-tight font-display italic">LUXE HAIR</h1>
+<div class="flex size-10 items-center justify-end">
+<button class="relative flex items-center justify-center size-10 rounded-full bg-primary/10">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+<span class="absolute top-1 right-1 flex h-2 w-2 rounded-full bg-accent-gold"></span>
+</button>
+</div>
+</header>
+<!-- Content Area -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Section -->
+<section class="p-4">
+<div class="relative h-[480px] w-full overflow-hidden rounded-xl border border-primary/20 shadow-2xl">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Model with elegant intricate braids profile shot" style='background-image: linear-gradient(to top, rgba(25, 16, 34, 0.9) 10%, rgba(25, 16, 34, 0.1) 60%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuC3J9F4GbQmJovB0Qg5Cf3_QxSUUE12fXtSiBZadD2AABkmciZyJ0sfZP5LwCg_wDbBtmblKPp-M1GT4MQFTM8ry2DHQnjQfeqb9GCZ8GfC7g2Nee0xyHjx0KijmTH9x4APTJD1IO0J02Ud-o28eRRa5LpA_WuzZsELGSLavd1DYy5P11d9jRAbSQRMi117hUNqg9f0y_Xx-tqQ2RoL7P86nxwVXSWdHasKSrMwrnu51NHsmOb9ySf7aGofzaic7Pns0DqLRp9hZRuG");'></div>
+<div class="absolute bottom-0 left-0 right-0 p-8 flex flex-col items-center text-center">
+<span class="text-accent-gold text-sm font-bold tracking-[0.2em] uppercase mb-2">Atlanta's Finest</span>
+<h2 class="text-white text-4xl font-extrabold leading-tight mb-6 font-display">Elite Extensions &amp; Braids</h2>
+<button class="gold-gradient text-slate-900 px-10 py-4 rounded-full font-bold text-lg shadow-[0_0_20px_rgba(212,175,55,0.3)] active:scale-95 transition-transform">
+                            Book Now
+                        </button>
+</div>
+</div>
+</section>
+<!-- Horizontal Product Scroll -->
+<section class="py-6">
+<div class="flex items-center justify-between px-6 mb-4">
+<h3 class="text-xl font-bold font-display">Premium Virgin Extensions</h3>
+<span class="text-primary text-sm font-semibold">View All</span>
+</div>
+<div class="flex gap-4 overflow-x-auto px-6 hide-scrollbar">
+<!-- Product 1 -->
+<div class="min-w-[160px] flex flex-col gap-2">
+<div class="aspect-[4/5] rounded-lg bg-primary/5 border border-primary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Smooth deep wave hair bundles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5jXdZ4GEopIxF_jS59B0JNqr0EW1L3tE0t7xJjoh160aWinVc1VsKpO1lKdaaVruewtT4qOm_JZJgtnONSHBH9EKYOZUqDDcy7rUNahp3100cYsf6OeJsarhLIQpdStM8IrDpC3vGOAGyeGGWxAzQub-04C39km0xSZIh5EEXTVIpNumOCQe9WwT_QoA2rnuKuV0-2EEU3a_lVOa3lbeO7vCh_-Dq2m9iWz9ZlhlZTvB8YCPPsSCsj5jGnnqs_94Zs1mXB3xM4fxm"/>
+</div>
+<div>
+<p class="text-sm font-bold">Deep Wave Bundles</p>
+<p class="text-accent-gold font-bold">$120.00+</p>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="min-w-[160px] flex flex-col gap-2">
+<div class="aspect-[4/5] rounded-lg bg-primary/5 border border-primary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Silk straight virgin hair extensions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTIygkCVVp5IQXC5s-Rsd2h7451JS0rwxHR0dFHq_VE0WkdBHhdZDCo0V1ep1wFCLGSsy9R2Cz4232RlOUkJrQ3J73JSkokRZSryAv8y3Iq9WjJuh8zYgjtW9mBZb2RQKRPGOLqoWqt9IjxMN9LLv_uCcqPDhys78YtOjz-zhK_OhMCaqrKwhgY04F6R32i9tUkpZw6LH0B1QPCs2QWxalTQqKw0pKDmkG2w2cgVDSReSsE_3f2c1L3yRgwwFC738deIpD9k0vKZyv"/>
+</div>
+<div>
+<p class="text-sm font-bold">Silky Straight</p>
+<p class="text-accent-gold font-bold">$145.00+</p>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="min-w-[160px] flex flex-col gap-2">
+<div class="aspect-[4/5] rounded-lg bg-primary/5 border border-primary/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Curly lace frontal hair piece" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV7MN2KljbpWEIHe5-y2xvPbHeA7uKuhR6661r5hkGUwgOYa6ciq27XmzvQcCGwu94G8cwS3_KtfM4j86aOfW19NgT9yKJr_RlIHDBVGKuwzvapk5X_xOmRqMn3h3bnt5faigAWJ1PJSqMzPFzXFD1i7aJc93gH4g-ul8wnQhvr2e0bAgle_NpRBseXowlXlwMQRPVB_6thxa0lEhSYGWSdwArMBuQJJjYVx61qhIagOhmYYXGZl73PrdPec9uG_mtS7s0y5x5v_Gm"/>
+</div>
+<div>
+<p class="text-sm font-bold">Lace Frontal</p>
+<p class="text-accent-gold font-bold">$180.00+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="p-6 bg-primary/5 my-4">
+<div class="mb-6">
+<h3 class="text-2xl font-bold font-display mb-1">Our Services</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Expert styling in the heart of Atlanta</p>
+</div>
+<div class="grid gap-4">
+<!-- Service 1 -->
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark p-4 rounded-xl border border-primary/10">
+<div class="size-16 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">content_cut</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-lg">Knotless Braids</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 italic">4-6 Hours • From $200</p>
+</div>
+<span class="material-symbols-outlined text-primary/40">chevron_right</span>
+</div>
+<!-- Service 2 -->
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark p-4 rounded-xl border border-primary/10">
+<div class="size-16 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">brush</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-lg">Silk Press</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 italic">2 Hours • From $85</p>
+</div>
+<span class="material-symbols-outlined text-primary/40">chevron_right</span>
+</div>
+<!-- Service 3 -->
+<div class="flex items-center gap-4 bg-background-light dark:bg-background-dark p-4 rounded-xl border border-primary/10">
+<div class="size-16 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-3xl">face_3</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-lg">Lace Install</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 italic">3 Hours • From $150</p>
+</div>
+<span class="material-symbols-outlined text-primary/40">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Testimonial Teaser -->
+<section class="p-6">
+<div class="bg-primary/10 rounded-xl p-6 border border-primary/20 text-center">
+<div class="flex justify-center gap-1 mb-3">
+<span class="material-symbols-outlined text-accent-gold fill-1">star</span>
+<span class="material-symbols-outlined text-accent-gold fill-1">star</span>
+<span class="material-symbols-outlined text-accent-gold fill-1">star</span>
+<span class="material-symbols-outlined text-accent-gold fill-1">star</span>
+<span class="material-symbols-outlined text-accent-gold fill-1">star</span>
+</div>
+<p class="italic text-lg mb-4 text-slate-700 dark:text-slate-300">"The best extensions I've ever purchased. The service was impeccable!"</p>
+<p class="font-bold text-primary">— Sarah J., Atlanta</p>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex border-t border-primary/10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-4 pb-6 pt-3 safe-area-inset-bottom">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">content_cut</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Services</p>
+</a>
+<div class="flex flex-1 flex-col items-center justify-center -mt-8">
+<div class="gold-gradient size-14 rounded-full flex items-center justify-center shadow-lg border-4 border-background-dark">
+<span class="material-symbols-outlined text-slate-900 font-bold">calendar_month</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-wider text-accent-gold mt-1">Book</p>
+</div>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">store</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Shop</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Profile</p>
+</a>
+</nav>
+</div>
+
+``</body></html>

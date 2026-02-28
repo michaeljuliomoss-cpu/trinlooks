@@ -32,6 +32,7 @@ export function BookingForm({ serviceId, serviceName, duration, date, time, onBa
 
   const createAppointment = useMutation(api.appointments.createAppointment)
   const sendWhatsAppNotification = useAction(api.whatsapp.sendWhatsAppNotification)
+  const sendBookingEmail = useAction(api.emails.sendBookingConfirmation)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -50,7 +51,22 @@ export function BookingForm({ serviceId, serviceName, duration, date, time, onBa
         customerPhone: formData.phone,
       })
 
-      // 2. Send WhatsApp notification
+      // 2. Send Email confirmation via Resend
+      try {
+        await sendBookingEmail({
+          customerName: formData.name,
+          customerEmail: formData.email,
+          customerPhone: formData.phone,
+          date,
+          timeSlot: time,
+          serviceName,
+          duration,
+        })
+      } catch (emailError) {
+        console.error("Email notification failed, but booking succeeded", emailError)
+      }
+
+      // 3. Send WhatsApp notification
       try {
         await sendWhatsAppNotification({
           customerName: formData.name,
